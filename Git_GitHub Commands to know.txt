@@ -1,0 +1,14 @@
+Login
+1. Open Git Bash
+2. enter "eval `ssh-agent`"
+3. enter "ssh-add " then copy the private file.
+4. navigate to project folder.
+
+Navigation
+1. "git clone (SSH LINK)" copies project
+2. "git pull" copies any changes
+3. "git add filename.txt" adds file to be commited
+4. "git commit -m "message"" saves it.
+5. "git push" send all this shit to GitHub.
+6. "git checkout -b (name)" adds new branch.
+7. "git checkout main" goes to main branch.
