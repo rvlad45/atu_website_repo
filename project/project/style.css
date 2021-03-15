@@ -1,0 +1,99 @@
+* { padding: 0px;
+    margin: 0px; }
+body { background-color: #EBEBEB; }
+footer { text-align: center;
+         font-size: 80%;
+         padding: 2em; 
+         color: #FFFFFF; 
+         background-color: #252525; }
+form { display: grid; 
+       grid-template-rows: auto; 
+       grid-template-columns: 8em 1fr; 
+       grid-gap: 1em; 
+       gap: 1em; 
+       min-width: 200px; 
+       padding: 2em; 
+       margin-top: 2px;
+       background-color: #2B835A; }
+h1 { font-weight: 400; 
+     text-shadow: 1px 1px 8px #444444; 
+     box-shadow: 0 3px rgb(70 70 70 / 10%);
+     color: #FFFFFF; 
+     background-color: #2B835A;  
+     padding: 1em; 
+     margin-bottom: 1em; }
+h2 { color: #000000; 
+     border-bottom: 1px dotted #afafaf; 
+     text-align: center; 
+     background-color: #FFFFFF; 
+     font-weight: lighter;}
+h3 { color: #FFFAF0; 
+     font-size: 130%; 
+     font-style: italic; 
+     text-shadow: -1px 1px 0 #000,
+                  1px 1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px -1px 0 #000; }
+main a { text-decoration: none; }
+main p { background-color: #FFFFFF; 
+         padding: 1em; }
+main ul { background-color: #FFFFFF; 
+          color: #000000;
+          padding: 1em; 
+          padding-left: 2em; }
+nav { background-color: #252525;
+      text-align: right;
+      font-size: 120%; 
+      font-style: "Open Sans", sans-serif; 
+      line-height: 40px; }
+nav a { text-decoration: none; 
+        padding-left: 10px; 
+        padding-right: 10px; }
+nav a:link { color: #FFFFFF; }
+nav a:visited { color: #FFFFFF; }
+nav a:hover { color: #FFFFFF; 
+              background-color: #444; }
+nav ul { margin: 5px; 
+         list-style-type: none; }
+nav li { display: inline; }
+p { color: #000000; }
+table { margin: auto;
+        border: 1px solid #000000;
+        width: 800px; 
+        margin-bottom: 4px;}
+th { border-style: none;
+     padding: 5px;
+     font-family: "Open Sans", sans-serif; 
+     background-color: #2B835A;
+     }
+td { border-style: none;
+     padding: 5px;
+     font-family: "Open Sans", sans-serif; }
+#wrapper { font-family: "Open Sans", sans-serif; 
+           margin: auto;
+           width: 100%;
+           box-shadow: 5px 5px 5px #696969; 
+           border: 1px solid #000000; }
+.even { background-color: #dbdbdb; }
+.odd { background-color: #FFFFFF; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
