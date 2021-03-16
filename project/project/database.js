@@ -14,23 +14,42 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-var dbConfig = {
-server: "DESKTOP-TTS61H0\\SQLEXPRESS",
-database:"ITS Equipment",
-user: "Level1Auth",
-password:"SysAdmin21",
-port:1433
-}
+app.get('/', function (req, res) {
 
-var conn;
-connectToDB=function(){
-conn = new sql.ConnectionPool(dbConfig);
-conn.connect(function (err){
-if (err){
-console.log(err);
-return;
-} else {
-    console.log("connected");
-}
+    var sql = require("mssql");
 
-}); }
+    // config for your database
+    var config = {
+        user: 'Level1Auth',
+        password: 'SysAdmin21',
+        server: 'localhost', 
+        database: 'ITS Equipment',
+        "options": {
+        "encrypt": true,
+        "enableArithAbort": true
+        }
+    };
+
+    // connect to your database
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+
+        // query to the database and get the records
+        request.query('select * from Equipment', function (err, recordset) {
+            
+            if (err) console.log(err)
+
+            // send records as a response
+            res.send(recordset);
+            
+        });
+    });
+});
+
+var server = app.listen(5000, function () {
+    console.log('Server is running..');
+});
