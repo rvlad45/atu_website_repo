@@ -1,35 +1,36 @@
-const express = require('express');
-const sql = require('mssql');
-const PORT = 1433;
+var express = require("express");
+var bodyParser = require("body-parser");
+var sql = require("../project/node_modules/mssql");
+var cors = require('cors');
+var app = express(); 
 
-const app = express();
+// Body Parser Middleware
+app.use(bodyParser.json()); 
+app.use(cors());
 
-const config = {
-    user: "Level1Auth",
-    password: "SysAdmin21",
-    server: "DESKTOP-TTS61H0\\SQLEXPRESS",
-    database: "ITS Equipment",
-    port: 1433
-};  
+//Setting up server
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});
 
-app.get('/', function(req,res) {
-    let connection = sql.connect(config, (err) =>{
-        if(err){
-            console.log(err);
-        }else {
-            res.send('DB Connected');
-            //code for SQL request here
-        }
-    })
-    var request = new sql.Request();           
-            request.query('select * from Equipment', function (err, recordset) {           
-                if (err) console.log(err)
-                res.send(recordset);            
-            });
-})
+var dbConfig = {
+server: "DESKTOP-TTS61H0\\SQLEXPRESS",
+database:"ITS Equipment",
+user: "Level1Auth",
+password:"SysAdmin21",
+port:1433
+}
 
-/*
-app.listen(PORT,function(){
-    console.log(`Server started at ${PORT}`);
-})
-*/
+var conn;
+connectToDB=function(){
+conn = new sql.ConnectionPool(dbConfig);
+conn.connect(function (err){
+if (err){
+console.log(err);
+return;
+} else {
+    console.log("connected");
+}
+
+}); }
