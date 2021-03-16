@@ -53,3 +53,7 @@ app.get('/', function (req, res) {
 var server = app.listen(5000, function () {
     console.log('Server is running..');
 });
+
+function insertText () {
+    document.getElementById('td1').innerHTML = "Some text to enter";
+}
