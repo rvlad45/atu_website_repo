@@ -53,15 +53,9 @@ app.get('/', function (req, res) {
     });
 });
 
+//Trying to figure out how to send this info to createTable.js
+module.exports =itemData;
+
 var server = app.listen(5000, function () {
     console.log('Server is running..');
 });
-
-// THIS IS THE FORMAT TO INSERT ITEMS INTO TABLE
-forEach(let row in array) {
-    $('#my_table').append(`<tr>
-        <td>${row.name}</td>
-        <td>${row.surname}</td>
-        <td>${row.age}</td>
-    </tr>`);
-}
