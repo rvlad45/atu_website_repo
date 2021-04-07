@@ -4,6 +4,8 @@ var sql = require("../project/node_modules/mssql");
 var cors = require('cors');
 var app = express(); 
 
+var itemData;
+
 // Body Parser Middleware
 app.use(bodyParser.json()); 
 app.use(cors());
@@ -45,7 +47,8 @@ app.get('/', function (req, res) {
 
             // send records as a response
             res.send(recordset);
-            
+            itemData = recordset;
+            console.log(itemData);
         });
     });
 });
@@ -54,6 +57,11 @@ var server = app.listen(5000, function () {
     console.log('Server is running..');
 });
 
-function insertText () {
-    document.getElementById('td1').innerHTML = "Some text to enter";
+// THIS IS THE FORMAT TO INSERT ITEMS INTO TABLE
+forEach(let row in array) {
+    $('#my_table').append(`<tr>
+        <td>${row.name}</td>
+        <td>${row.surname}</td>
+        <td>${row.age}</td>
+    </tr>`);
 }
