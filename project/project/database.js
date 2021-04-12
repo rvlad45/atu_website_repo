@@ -42,19 +42,19 @@ app.get('/', function (req, res) {
 
         // query to the database and get the records
         request.query('select * from Equipment', function (err, recordset) {
-            
-            if (err) console.log(err)
+            if (err) console.log(err);
 
             // send records as a response
-            res.send(recordset);
+            res.send(recordset['recordset']);
             itemData = recordset;
-            console.log(itemData);
         });
     });
 });
 
+
+
 //Trying to figure out how to send this info to createTable.js
-module.exports =itemData;
+module.exports = app;
 
 var server = app.listen(5000, function () {
     console.log('Server is running..');

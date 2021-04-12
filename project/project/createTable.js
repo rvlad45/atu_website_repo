@@ -1,5 +1,6 @@
 const fs = require('fs');
 // JSON data
+const runData = require('./database.js');
 const data = require('./data.json');
 // Build paths
 const { buildPathHtml } = require('./buildPaths');
@@ -22,13 +23,10 @@ const { buildPathHtml } = require('./buildPaths');
  */
 const createRow = (item) => `
   <tr>
-    <td>${item.invoiceId}</td>
-    <td>${item.invoiceName}</td>
-    <td>${item.price}</td>
-    <td>${item.createdDate}</td>
-    <td>${item.dueDate}</td>
-    <td>${item.address}</td>
-    <td>${item.companyName}</td>
+    <td>${item.Serial_Num}</td>
+    <td>${item.Name}</td>
+    <td>${item.Make}</td>
+    <td>${item.Model}</td>
   </tr>
 `;
 
@@ -40,13 +38,10 @@ const createRow = (item) => `
 const createTable = (rows) => `
   <table>
     <tr>
-        <th>Invoice Id</td>
-        <th>Invoice Name</td>
-        <th>Price</td>
-        <th>Invoice Created</td>
-        <th>Due Date</td>
-        <th>Vendor Address</td>
-        <th>Vendor Name</td>
+        <th>Serial_Num</td>
+        <th>Name</td>
+        <th>Make</td>
+        <th>Model</td>
     </tr>
     ${rows}
   </table>
@@ -58,34 +53,38 @@ const createTable = (rows) => `
  * @returns {String}
  */
 const createHtml = (table) => `
-  <html>
-    <head>
-      <style>
-        table {
-          width: 100%;
-        }
-        tr {
-          text-align: left;
-          border: 1px solid black;
-        }
-        th, td {
-          padding: 15px;
-        }
-        tr:nth-child(odd) {
-          background: #CCC
-        }
-        tr:nth-child(even) {
-          background: #FFF
-        }
-        .no-content {
-          background-color: red;
-        }
-      </style>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ITS Equipment - Inventory</title>
+  <meta charset="utf-8">
+  <link href="style.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="media/Belltower_logo.PNG"/>
+  <meta name="description" content="This is the equipment available for rent.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="script" href="/data.js">
+</head>
+<body>
+  <div id="wrapper"> 
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="items.html">Inventory</a>
+      <a href="cart.html">Cart</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+    <h1>Inventory</h1>
+    <main>
+      <h2>All Equipment Available for Rent:</h2>
+      <!-- Table format !!TESTING!! -->
       ${table}
-    </body>
-  </html>
+    </main>
+    <footer>
+      <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
+      <a>Copyright &copy; 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
+    </footer>
+  </div>
+</body>
+</html>
 `;
 
 /**
@@ -111,7 +110,7 @@ try {
 		fs.unlinkSync(buildPathHtml);
 	}
 	/* generate rows */
-	const rows = [data].map(createRow).join('');
+	const rows = data.map(createRow).join('');
 	/* generate table */
 	const table = createTable(rows);
 	/* generate html */

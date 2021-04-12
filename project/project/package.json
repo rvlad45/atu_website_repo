@@ -4,7 +4,8 @@
   "description": "",
   "main": "database.js",
   "scripts": {
-    "start": "node database.js"
+    "start": "node database.js",
+    "build:table": "node ./createTable.js"
   },
   "author": "",
   "license": "ISC",
