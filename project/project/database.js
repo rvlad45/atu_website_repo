@@ -16,6 +16,9 @@ var app = express();
 // Variables used to manipulate json data.
 var itemData = [];
 var availableData = [];
+var tempA = 0;
+// IDK but its required
+const fs = require('fs');
 
 // Body Parser Middleware
 app.use(bodyParser.json()); 
@@ -60,29 +63,42 @@ app.get('/', function (req, res) {
 
             // Sets the itemData variable to hold proper json data
             itemData = recordset['recordset'];
-
+            
             // Send the json data to the server
             res.send(recordset['recordset']);
 
-            // Runs the table maker for items.html
-            createTable();
-        });
+            // Query brings any actively borrowed item's "Serial_Num" and puts it in "avail"
+            request.query('select Serial_Num from Borrower', function (err, avail) {
 
-        // Query brings any actively borrowed item's "Serial_Num" and puts it in "avail"
-        request.query('select Serial_Num from Borrower', function (err, avail) {
+                // Checks for any issue with the Query
+                if (err) console.log(err);
 
-            // Checks for any issue with the Query
-            if (err) console.log(err);
-
-            // Checks if there are any rows in the table
-            if (!avail['rowsAffected'] == 0) {
                 // Adds the "Serial_Num" of active borrowers in "availableData"
                 availableData = avail['recordset'];
-            }
+
+                // Checks if there are any rows in the table
+                if (!avail['rowsAffected'] == 0) {
+                    for(i = 0; i < avail['rowsAffected']; i++){
+                        // Set the availability to true if the avail string matches the recordset string
+                        if (recordset.recordset[i].Serial_Num == avail.recordset[tempA].Serial_Num) {
+                            recordset.recordset[i].Availability = "false";
+                            tempA++;
+                        } else {
+                            recordset.recordset[i] = true;
+                        }
+                    }
+                }
 
             // Just to see if I'm getting the right data
-            console.log(availableData);
+            itemData = recordset['recordset'];
+            console.log(itemData);
+            });
+
+            // Runs the table maker for items.html
+            setTimeout(createTable, 200);
         });
+
+        
     });
 });
 
@@ -93,9 +109,6 @@ var server = app.listen(5000, function () {
 
 // Function responsible for making the table and all the data inside
 function createTable() {
-    // IDK but its required
-    const fs = require('fs');
-
     // JSON data
     const data = itemData;
 
@@ -104,12 +117,12 @@ function createTable() {
 
     // Finds the data with the name item.(NAME) and puts it in the table
     const createRow = (item) => `
-        <tr>
-            <td><a href="cart.html">${item.Availability}</a></td>
+        <tr>           
             <td>${item.Serial_Num}</td>
             <td>${item.Name}</td>
             <td>${item.Make}</td>
             <td>${item.Model}</td>
+            <td><a href="cart.html" >${item.Availability}</a></td>
         </tr>
     `;
 
@@ -117,11 +130,11 @@ function createTable() {
     const createTable = (rows) => `
         <table>
         <tr>
-            <th>Availability</td>
             <th>Serial_Num</td>
             <th>Name</td>
             <th>Make</td>
             <th>Model</td>
+            <th>Availability</td>
         </tr>
         ${rows}
         </table>
