@@ -17,8 +17,11 @@ var app = express();
 var itemData = [];
 var availableData = [];
 var tempA = 0;
+var checkRows = 0;
+
 // IDK but its required
 const fs = require('fs');
+const e = require("express");
 
 // Body Parser Middleware
 app.use(bodyParser.json()); 
@@ -76,18 +79,36 @@ app.get('/', function (req, res) {
                 // Adds the "Serial_Num" of active borrowers in "availableData"
                 availableData = avail['recordset'];
 
+                checkRows = recordset['rowsAffected'];
+                if (avail['rowsAffected'] > checkRows){
+                    checkRows = avail['rowsAffected'];
+                }
+
                 // Checks if there are any rows in the table
-                if (!avail['rowsAffected'] == 0) {
-                    for(i = 0; i < avail['rowsAffected']; i++){
+                if (avail['rowsAffected'] != 0) {
+                    for(i = 0; i < checkRows; i++){
                         // Set the availability to true if the avail string matches the recordset string
-                        if (recordset.recordset[i].Serial_Num == avail.recordset[tempA].Serial_Num) {
-                            recordset.recordset[i].Availability = "false";
+                        if (avail.recordset[tempA] != null) {
+                            for(j = 0; j < recordset['rowsAffected']; j++){
+                                if (recordset.recordset[j].Serial_Num == avail.recordset[tempA].Serial_Num) {
+                                    if (avail.recordset[tempA].Ch_InDate == null) {
+                                        recordset.recordset[j].Availability = false;
+                                    } else {
+                                        recordset.recordset[j].Availability = true;
+                                    }
+                                }
+                            }
                             tempA++;
                         } else {
-                            recordset.recordset[i] = true;
+                            recordset.recordset[i].Availability = true;
                         }
                     }
+                } else {
+                    for(i = 0; i < checkRows; i++) {
+                        recordset.recordset[i].Availability = true;
+                    }
                 }
+                tempA = 0;
 
             // Just to see if I'm getting the right data
             itemData = recordset['recordset'];
@@ -122,13 +143,13 @@ function createTable() {
             <td>${item.Name}</td>
             <td>${item.Make}</td>
             <td>${item.Model}</td>
-            <td><a href="cart.html" >${item.Availability}</a></td>
+            <td><a href="cart.html">${item.Availability}</a></td>
         </tr>
     `;
 
     // Creates the table structure in items.html
     const createTable = (rows) => `
-        <table>
+        <table id="dataTable">
         <tr>
             <th>Serial_Num</td>
             <th>Name</td>
@@ -167,8 +188,65 @@ function createTable() {
                     ${table}
                 </main>
                 <footer>
-                    <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
-                    <a>Copyright &copy; 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
+                <div class="footer-widgets">
+                <div class="item1">
+                    <h3>CAMPUS SUPPORT CENTER</h3>
+                </div>
+                <div class="item3">
+                    <ul>
+                        <li>RPL 150</li>
+                        <li>(479) 968-0646</li>
+                        <li>(866) 400-8022</li>
+                        <li>campussupport@atu.edu</li>
+                    </ul><br>
+                    <h4>Hours of Operation</h4>
+                    <ul>
+                        <li>Sunday-Thursday 7 am - 1 am</li>
+                        <li>Friday-Saturday 7 am - 4 pm</li>
+                    </ul>
+                </div>
+        
+                <div class="item2">
+                    <h3>QUICK LINKS</h3>
+                </div>
+                <div class="item4">
+                    <ul>
+                        <li><a href="https://bblearn.atu.edu/">Blackboard Learn</a></li>
+                        <li><a href="http://www.dell.com/dellu/atu">Dell Discounts</a></li>
+                        <li><a href="https://www.atu.edu/adminservices/form-tech-equip-removal.php">Equipment Removal</a></li>
+                        <li><a href="https://ois.atu.edu/feedback/">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="item5">
+                    <ul>
+                        <li><a href="https://ois.atu.edu/information-security/">InfoSec</a></li>
+                        <li><a href="https://support.atu.edu/support/solutions">Solutions</a></li>
+                        <li><a href="https://ams.atu.edu/">Manage Account</a></li>
+                    </ul>
+                </div>
+                <div class="item6">
+                    <ul>
+                        <li><a href="http://office365.atu.edu/">Office 365</a></li>
+                        <li><a href="https://onetech.atu.edu/">OneTech</a></li>
+                        <li><a href="https://ois.atu.edu/computer-based-training/">Online Training</a></li>
+                        <li><a href="https://ois.atu.edu/information-security/phishing/">Phishing</a></li>
+                    </ul>
+                </div>
+                <div class="item7">
+                    <ul>
+                        <li><a href="https://support.atu.edu/support/solutions/folders/7000071466">Policies</a></li>
+                        <li><a href="https://ois.atu.edu/hardwaresoftware-purchasing-best-practices/">Purchasing</a></li>
+                        <li><a href="https://ois.atu.edu/category/security/data-security-awareness/">Security Awarness</a></li>
+                        <li><a href="https://support.atu.edu/support/catalog/items/69">Software Request</a></li>
+                        <li><a href="https://get.teamviewer.com/v13/zzac6tp">TeamViewer</a></li>
+                    </ul>
+                </div>
+        
+                    <div class="item8">
+                        <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
+                        <a>&copy; Copyright 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
+                    </div>
+                </div>
                 </footer>
             </div>
         </body>

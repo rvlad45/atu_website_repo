@@ -20,20 +20,77 @@
     <main>
       <h2>Fill out Information to Start Rental:</h2>
       <form method="post">
-        <label for="myFName">*First Name: <input type="text" name="myFName" id="myFName" required="required"></label><br><br>
-        <label for="myLName">*Last Name: <input type="text" name="myLName" id="myLName" required="required"></label><br><br>
-        <label for="myEmail">*Email: <input type="email" name="myEmail" id="myEmail" required="required"></label><br><br>
-        <label for="myMobile">Phone Number: <input type="tel" name="myMobile" id="myMobile" maxlength="12"></label><br><br>
-        <label for="rentDate">Rental Start Date: <input type="date" name="rentDate" id="rentDate"></label><br><br>
-        <label for="myChoice">Days Equipment is Needed: <input type="number" name="myChoice" id="myChoice" min="1" max="14"></label><br><br>
-        <label for="myComments">*Comments: </label>
-          <textarea name="myComments" id="myComments" rows="2" cols="30" required="required" placeholder="Your comments here"></textarea><br><br>
+        <label class="label" for="myFName">*First Name: <input class="input" type="text" name="myFName" id="myFName" required="required"></label><br><br>
+        <label class="label" for="myLName">*Last Name: <input class="input" type="text" name="myLName" id="myLName" required="required"></label><br><br>
+        <label class="label" for="myEmail">*Email: <input class="input" type="email" name="myEmail" id="myEmail" required="required"></label><br><br>
+        <label class="label" for="myMobile">Phone Number: <input class="input" type="tel" name="myMobile" id="myMobile" maxlength="12"></label><br><br>
+        <label class="label" for="rentDate">Rental Start Date: <input class="input" type="date" name="rentDate" id="rentDate"></label><br><br>
+        <label class="label" for="myChoice">Days Equipment is Needed: <input class="input" type="number" name="myChoice" id="myChoice" min="1" max="14"></label><br><br>
+        <label class="label" for="myComments">*Comments: </label>
+          <textarea name="myComments" id="myComments" rows="8" cols="10" required="required" placeholder="Your comments here"></textarea><br><br>
         <input type="submit" value="Submit">
       </form>
     </main>
     <footer>
-      <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
-      <a>Copyright &copy; 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
+      <div class="footer-widgets">
+        <div class="item1">
+          <h3>CAMPUS SUPPORT CENTER</h3>
+        </div>
+        <div class="item3">
+          <ul>
+            <li>RPL 150</li>
+            <li>(479) 968-0646</li>
+            <li>(866) 400-8022</li>
+            <li>campussupport@atu.edu</li>
+          </ul><br>
+          <h4>Hours of Operation</h4>
+          <ul>
+            <li>Sunday-Thursday 7 am - 1 am</li>
+            <li>Friday-Saturday 7 am - 4 pm</li>
+          </ul>
+        </div>
+
+        <div class="item2">
+          <h3>QUICK LINKS</h3>
+        </div>
+        <div class="item4">
+          <ul>
+            <li><a href="https://bblearn.atu.edu/">Blackboard Learn</a></li>
+            <li><a href="http://www.dell.com/dellu/atu">Dell Discounts</a></li>
+            <li><a href="https://www.atu.edu/adminservices/form-tech-equip-removal.php">Equipment Removal</a></li>
+            <li><a href="https://ois.atu.edu/feedback/">Feedback</a></li>
+          </ul>
+        </div>
+        <div class="item5">
+          <ul>
+            <li><a href="https://ois.atu.edu/information-security/">InfoSec</a></li>
+            <li><a href="https://support.atu.edu/support/solutions">Solutions</a></li>
+            <li><a href="https://ams.atu.edu/">Manage Account</a></li>
+          </ul>
+        </div>
+        <div class="item6">
+          <ul>
+            <li><a href="http://office365.atu.edu/">Office 365</a></li>
+            <li><a href="https://onetech.atu.edu/">OneTech</a></li>
+            <li><a href="https://ois.atu.edu/computer-based-training/">Online Training</a></li>
+            <li><a href="https://ois.atu.edu/information-security/phishing/">Phishing</a></li>
+          </ul>
+        </div>
+        <div class="item7">
+          <ul>
+            <li><a href="https://support.atu.edu/support/solutions/folders/7000071466">Policies</a></li>
+            <li><a href="https://ois.atu.edu/hardwaresoftware-purchasing-best-practices/">Purchasing</a></li>
+            <li><a href="https://ois.atu.edu/category/security/data-security-awareness/">Security Awarness</a></li>
+            <li><a href="https://support.atu.edu/support/catalog/items/69">Software Request</a></li>
+            <li><a href="https://get.teamviewer.com/v13/zzac6tp">TeamViewer</a></li>
+          </ul>
+        </div>
+
+        <div class="item8">
+          <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
+          <a>&copy; Copyright 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
+        </div>
+      </div>
     </footer>
   </div>
 </body>
