@@ -7,25 +7,34 @@
 */
 
 // Variables Needed to establish the SQL Server Connection
-var express = require("express");
-var bodyParser = require("body-parser");
+const fs = require('fs');
+const express = require("express");
+const bodyParser = require("body-parser");
 var sql = require("../project/node_modules/mssql");
 var cors = require('cors');
 var app = express(); 
 
 // Variables used to manipulate json data.
 var itemData = [];
-var availableData = [];
 var tempA = 0;
 var checkRows = 0;
 
-// IDK but its required
-const fs = require('fs');
-const e = require("express");
-
 // Body Parser Middleware
-app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cors());
+
+app.post('/info', (req, res)=> {
+    sendData(`${req.body.mySerial}`,`${req.body.myTNum}`,
+    `${req.body.myFName}`,`${req.body.myLName}`,`${req.body.myEmail}`,
+    `${req.body.myMobile}`,`${req.body.rentDate}`,`${req.body.myChoice}`,
+    `${req.body.myComments}`,`${req.body.myChecker}`);
+});
+
+const port = 5001;
+
+app.listen(port, () => {
+    console.log(`lower Server running on port ${port}`);
+});
 
 // Setting up the server
 var server = app.listen(process.env.PORT || 8080, function () {
@@ -77,42 +86,37 @@ app.get('/', function (req, res) {
                 if (err) console.log(err);
 
                 // Adds the "Serial_Num" of active borrowers in "availableData"
-                availableData = avail['recordset'];
-
+                availableData = avail['rowsAffected'];
                 checkRows = recordset['rowsAffected'];
-                if (avail['rowsAffected'] > checkRows){
-                    checkRows = avail['rowsAffected'];
-                }
 
                 // Checks if there are any rows in the table
                 if (avail['rowsAffected'] != 0) {
-                    for(i = 0; i < checkRows; i++){
-                        // Set the availability to true if the avail string matches the recordset string
-                        if (avail.recordset[tempA] != null) {
-                            for(j = 0; j < recordset['rowsAffected']; j++){
-                                if (recordset.recordset[j].Serial_Num == avail.recordset[tempA].Serial_Num) {
-                                    if (avail.recordset[tempA].Ch_InDate == null) {
-                                        recordset.recordset[j].Availability = false;
+                    for(i = 0; i < checkRows; i++) {
+                        
+                            for(j = 0; j < availableData; j++) {
+                                if (recordset.recordset[i].Serial_Num == avail.recordset[j].Serial_Num){
+                                    if (avail.recordset[j].Ch_InDate == null) {
+                                        recordset.recordset[i].Availability = 'No';
                                     } else {
-                                        recordset.recordset[j].Availability = true;
+                                        recordset.recordset[i].Availability = 'Yes';
                                     }
                                 }
+                                if( j == availableData - 1 && recordset.recordset[i].Availability == null) {
+                                    recordset.recordset[i].Availability = 'Yes';
+                                }
                             }
-                            tempA++;
-                        } else {
-                            recordset.recordset[i].Availability = true;
-                        }
                     }
-                } else {
+                }else {
                     for(i = 0; i < checkRows; i++) {
-                        recordset.recordset[i].Availability = true;
+                        recordset.recordset[i].Availability = 'Yes';
                     }
                 }
                 tempA = 0;
 
+
             // Just to see if I'm getting the right data
             itemData = recordset['recordset'];
-            console.log(itemData);
+            // console.log(itemData);
             });
 
             // Runs the table maker for items.html
@@ -143,7 +147,7 @@ function createTable() {
             <td>${item.Name}</td>
             <td>${item.Make}</td>
             <td>${item.Model}</td>
-            <td><a href="cart.html">${item.Availability}</a></td>
+            <td>${item.Availability}</td>
         </tr>
     `;
 
@@ -151,7 +155,7 @@ function createTable() {
     const createTable = (rows) => `
         <table id="dataTable">
         <tr>
-            <th>Serial_Num</td>
+            <th>Serial Number</td>
             <th>Name</td>
             <th>Make</td>
             <th>Model</td>
@@ -172,7 +176,6 @@ function createTable() {
             <link rel="icon" type="image/png" href="media/Belltower_logo.PNG"/>
             <meta name="description" content="This is the equipment available for rent.">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="script" href="/data.js">
         </head>
         <body>
             <div id="wrapper"> 
@@ -282,4 +285,36 @@ function createTable() {
     } catch (error) {
 	    console.log('Error generating table', error);
     }
+}
+
+function sendData (mySerial,myTNum,myFName,myLName,myEmail,myMobile,rentDate,myChoice,myComments,myChecker) {
+    var sql = require("mssql");
+
+    var config = {
+        user: 'Level1Auth',
+        password: 'SysAdmin21',
+        server: 'localhost', 
+        database: 'ITS Equipment',
+        "options": {
+        "encrypt": true,
+        "enableArithAbort": true
+        }
+    };
+
+    sql.connect(config, function (err) {
+
+        if (err) console.log(err);
+
+        let currentDate = new Date();
+        let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+        var request = new sql.Request();
+        var ReturnDate = rentDate;
+
+        request.query("INSERT INTO Borrower (T_Num,Name,Phone,Email,Ch_OutBy,Ch_OutTime,Ch_OutDate,ReturnDate,Comments,Serial_Num) VALUES ('" + myTNum + "','" + myFName + " " 
+        + myLName + "','" + myMobile + "','" + myEmail + "','" + myChecker + "','" + time 
+        + "','" + rentDate + "','" + ReturnDate + "','" + myComments + "','" + mySerial + "');", function (err, result) {
+            if (err) console.log(err);
+            console.log(result);
+        });
+    });
 }
