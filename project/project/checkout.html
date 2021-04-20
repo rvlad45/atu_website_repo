@@ -13,14 +13,31 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="items.html">Inventory</a>
-      <a href="cart.html">Cart</a>
+      <!--<a href="cart.html">Cart</a>-->
       <a href="checkout.html">Checkout</a>
     </nav>
     <h1>Checkout</h1>
     <main>
       <h2>Fill out Information to Start Rental:</h2>
       <form action="http://localhost:5001/info" method="POST">
-        <label class="label" for="mySerial">*Serial Number: <input class="input" type="text" name="mySerial" id="mySerial" required="required"></label><br><br>
+        <label class="label" for="mySerial">*Serial Number: <select class="input" style="text-align: right;" id="mySerial" name="mySerial">
+          <option value="128225">Elmo Document Camera</option>
+          <option value="131236BE03745">Ipevo Document Camera </option>
+          <option value="132670700341">Canon Video Camera</option>
+          <option value="1722WD02C3F9">Logitech Presentation Remote</option>
+          <option value="1722WD02E4F9">Logitech Presentation Remote</option>
+          <option value="3300774ND">NEC Projector</option>
+          <option value="A61F6VKLC02666J">Samsung Video Camera (SC-D363)</option>
+          <option value="CN-OCM788-S0081-85Q-0058 ">Dell Projector (1409X)</option>
+          <option value="CN-OM8591-S0081-648-0009">Dell Projector (3400MP)</option>
+          <option value="GWKG620222F">Epson Projector</option>
+          <option value="NE3140500182">Hovercam</option>
+          <option value="PD31C01608000">DenQ Projector</option>
+          <option value="RENK5300319">Espon Projector (1776W)</option>
+          <option value="TW-0G5371-70641-48J-0170 ">Dell Projector</option>
+          <option value="TW-0G5371-70641-553-0369">Dell Projector</option>
+          <option value="ZAT06V1S500447W">Samsung Video Camera (HMX-H100N)</option>
+        </select></label><br><br>
         <label class="label" for="myTNum">*T-Number: <input class="input" type="text" name="myTNum" id="myTNum" required="required"></label><br><br>
         <label class="label" for="myFName">*First Name: <input class="input" type="text" name="myFName" id="myFName" required="required"></label><br><br>
         <label class="label" for="myLName">*Last Name: <input class="input" type="text" name="myLName" id="myLName" required="required"></label><br><br>

@@ -23,6 +23,7 @@ var checkRows = 0;
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cors());
 
+//Pulls data from the Checkout Form
 app.post('/info', (req, res)=> {
     sendData(`${req.body.mySerial}`,`${req.body.myTNum}`,
     `${req.body.myFName}`,`${req.body.myLName}`,`${req.body.myEmail}`,
@@ -182,7 +183,6 @@ function createTable() {
                 <nav>
                     <a href="index.html">Home</a>
                     <a href="items.html">Inventory</a>
-                    <a href="cart.html">Cart</a>
                     <a href="checkout.html">Checkout</a>
                 </nav>
                 <h1>Inventory</h1>
@@ -287,6 +287,7 @@ function createTable() {
     }
 }
 
+//Sends data to populate the database from the Checkout Form
 function sendData (mySerial,myTNum,myFName,myLName,myEmail,myMobile,rentDate,myChoice,myComments,myChecker) {
     var sql = require("mssql");
 
