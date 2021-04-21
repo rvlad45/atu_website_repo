@@ -187,7 +187,7 @@ function createTable() {
                 </nav>
                 <h1>Inventory</h1>
                 <main>
-                    <h2>All Equipment Available for Rent:</h2>
+                    <h2>All Equipment Available for Loan:</h2>
                     ${table}
                 </main>
                 <footer>
