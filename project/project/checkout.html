@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <link href="style.css" rel="stylesheet">
   <link rel="icon" type="image/png" href="media/Belltower_logo.PNG"/>
-  <meta name="description" content="This is the page for users to fill out a form to borrow equipment.">
+  <meta name="description" content="This is the registration page for new users looking to rent equipment.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -13,11 +13,12 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="items.html">Inventory</a>
+      <!--<a href="cart.html">Cart</a>-->
       <a href="checkout.html">Checkout</a>
     </nav>
     <h1>Checkout</h1>
     <main>
-      <h2>Fill out Information to Start the Loan Process:</h2>
+      <h2>Fill out Information to Start Rental:</h2>
       <form id="checkout" action="http://localhost:5001/info" method="POST">
         <label class="label" for="mySerial">*Serial Number: <select class="input" style="text-align: right;" id="mySerial" name="mySerial">
           <option value="128225">Elmo Document Camera</option>
@@ -42,11 +43,11 @@
         <label class="label" for="myLName">*Last Name: <input class="input" type="text" name="myLName" id="myLName" required="required"></label><br><br>
         <label class="label" for="myEmail">*Email: <input class="input" type="email" name="myEmail" id="myEmail" required="required"></label><br><br>
         <label class="label" for="myMobile">Phone Number: <input class="input" type="tel" name="myMobile" id="myMobile" maxlength="12"></label><br><br>
-        <label class="label" for="rentDate">Rental Start Date: <input class="input" type="date" name="rentDate" id="rentDate"></label><br><br>
+        <label class="label" for="rentDate">Loan Start Date: <input class="input" type="date" name="rentDate" id="rentDate"></label><br><br>
         <label class="label" for="myChoice">Days Equipment is Needed: <input class="input" type="number" name="myChoice" id="myChoice" min="1" max="14"></label><br><br>
         <label class="label" for="myChecker">Checker: <input class="input" type="text" name="myChecker" id="myChecker"></label><br><br>
-        <label class="label" for="myComments">*Comments: </label>
-          <textarea name="myComments" id="myComments" rows="8" cols="10" required="required" placeholder="Your comments here"></textarea><br><br>
+        <label class="label" for="myComments">Comments: </label>
+          <textarea name="myComments" id="myComments" rows="8" cols="10" placeholder="Your comments here"></textarea><br><br>
           <button type="submit">Submit</button>
       </form>
     </main>

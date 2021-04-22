@@ -81,7 +81,7 @@ app.get('/', function (req, res) {
             res.send(recordset['recordset']);
 
             // Query brings any actively borrowed item's "Serial_Num" and puts it in "avail"
-            request.query('select Serial_Num from Borrower', function (err, avail) {
+            request.query('select * from Borrower', function (err, avail) {
 
                 // Checks for any issue with the Query
                 if (err) console.log(err);
@@ -99,6 +99,7 @@ app.get('/', function (req, res) {
                                     if (avail.recordset[j].Ch_InDate == null) {
                                         recordset.recordset[i].Availability = 'No';
                                     } else {
+                                        console.log(avail);
                                         recordset.recordset[i].Availability = 'Yes';
                                     }
                                 }
@@ -187,7 +188,7 @@ function createTable() {
                 </nav>
                 <h1>Inventory</h1>
                 <main>
-                    <h2>All Equipment Available for Loan:</h2>
+                    <h2>All Equipment Available to Borrow:</h2>
                     ${table}
                 </main>
                 <footer>

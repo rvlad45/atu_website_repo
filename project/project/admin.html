@@ -1,105 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>ITS Equipment - Inventory</title>
-        <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet">
-        <link rel="icon" type="image/png" href="media/Belltower_logo.PNG"/>
-        <meta name="description" content="This is the equipment available to borrow.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div id="wrapper"> 
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="items.html">Inventory</a>
-                <a href="checkout.html">Checkout</a>
-            </nav>
-            <h1>Return Items</h1>
-            <main>
-                <form action="http://localhost:5001/info" method="POST">
-                    <label class="label" for="mySerial">*Serial Number: <select class="input" style="text-align: right;" id="mySerial" name="mySerial">
-                        <option value="128225">Elmo Document Camera</option>
-                        <option value="131236BE03745">Ipevo Document Camera </option>
-                        <option value="132670700341">Canon Video Camera</option>
-                        <option value="1722WD02C3F9">Logitech Presentation Remote</option>
-                        <option value="1722WD02E4F9">Logitech Presentation Remote</option>
-                        <option value="3300774ND">NEC Projector</option>
-                        <option value="A61F6VKLC02666J">Samsung Video Camera (SC-D363)</option>
-                        <option value="CN-OCM788-S0081-85Q-0058 ">Dell Projector (1409X)</option>
-                        <option value="CN-OM8591-S0081-648-0009">Dell Projector (3400MP)</option>
-                        <option value="GWKG620222F">Epson Projector</option>
-                        <option value="NE3140500182">Hovercam</option>
-                        <option value="PD31C01608000">DenQ Projector</option>
-                        <option value="RENK5300319">Espon Projector (1776W)</option>
-                        <option value="TW-0G5371-70641-48J-0170 ">Dell Projector</option>
-                        <option value="TW-0G5371-70641-553-0369">Dell Projector</option>
-                        <option value="ZAT06V1S500447W">Samsung Video Camera (HMX-H100N)</option>
-                    </select></label><br><br>
-                    <button type="submit">Submit</button>
-                </form>
-            </main>
-            <footer>
+    <html lang="en">
+        <head>
+            <title>ITS Equipment - Inventory</title>
+            <meta charset="utf-8">
+            <link href="style.css" rel="stylesheet">
+            <link rel="icon" type="image/png" href="media/Belltower_logo.PNG"/>
+            <meta name="description" content="This is the equipment available for rent.">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+            <div id="wrapper"> 
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="items.html">Inventory</a>
+                    <a href="checkout.html">Checkout</a>
+                </nav>
+                <h1>Return Items</h1>
+                <main>
+                    <form action="http://localhost:5001/info" method="POST">
+                        <label class="label" for="mySerial">*Serial Number: <select class="input" style="text-align: right;" id="mySerial" name="mySerial">
+                            <option value="128225">Elmo Document Camera</option>
+                            <option value="131236BE03745">Ipevo Document Camera </option>
+                            <option value="132670700341">Canon Video Camera</option>
+                            <option value="1722WD02C3F9">Logitech Presentation Remote</option>
+                            <option value="1722WD02E4F9">Logitech Presentation Remote</option>
+                            <option value="3300774ND">NEC Projector</option>
+                            <option value="A61F6VKLC02666J">Samsung Video Camera (SC-D363)</option>
+                            <option value="CN-OCM788-S0081-85Q-0058 ">Dell Projector (1409X)</option>
+                            <option value="CN-OM8591-S0081-648-0009">Dell Projector (3400MP)</option>
+                            <option value="GWKG620222F">Epson Projector</option>
+                            <option value="NE3140500182">Hovercam</option>
+                            <option value="PD31C01608000">DenQ Projector</option>
+                            <option value="RENK5300319">Espon Projector (1776W)</option>
+                            <option value="TW-0G5371-70641-48J-0170 ">Dell Projector</option>
+                            <option value="TW-0G5371-70641-553-0369">Dell Projector</option>
+                            <option value="ZAT06V1S500447W">Samsung Video Camera (HMX-H100N)</option>
+                            
+                          </select></label><br><br>
+                          <button type="submit">Submit</button>
+                    </form>
+                </main>
+                <footer>
                 <div class="footer-widgets">
-                    <div class="item1">
-                        <h3>CAMPUS SUPPORT CENTER</h3>
-                    </div>
-                    <div class="item3">
-                        <ul>
-                            <li>RPL 150</li>
-                            <li>(479) 968-0646</li>
-                            <li>(866) 400-8022</li>
-                            <li>campussupport@atu.edu</li>
-                        </ul><br>
-                        <h4>Hours of Operation</h4>
-                        <ul>
-                            <li>Sunday-Thursday 7 am - 1 am</li>
-                            <li>Friday-Saturday 7 am - 4 pm</li>
-                        </ul>
-                    </div>
+                <div class="item1">
+                    <h3>CAMPUS SUPPORT CENTER</h3>
+                </div>
+                <div class="item3">
+                    <ul>
+                        <li>RPL 150</li>
+                        <li>(479) 968-0646</li>
+                        <li>(866) 400-8022</li>
+                        <li>campussupport@atu.edu</li>
+                    </ul><br>
+                    <h4>Hours of Operation</h4>
+                    <ul>
+                        <li>Sunday-Thursday 7 am - 1 am</li>
+                        <li>Friday-Saturday 7 am - 4 pm</li>
+                    </ul>
+                </div>
         
-                    <div class="item2">
-                        <h3>QUICK LINKS</h3>
-                    </div>
-                    <div class="item4">
-                        <ul>
-                            <li><a href="https://bblearn.atu.edu/">Blackboard Learn</a></li>
-                            <li><a href="http://www.dell.com/dellu/atu">Dell Discounts</a></li>
-                            <li><a href="https://www.atu.edu/adminservices/form-tech-equip-removal.php">Equipment Removal</a></li>
-                            <li><a href="https://ois.atu.edu/feedback/">Feedback</a></li>
-                        </ul>
-                    </div>
-                    <div class="item5">
-                        <ul>
-                            <li><a href="https://ois.atu.edu/information-security/">InfoSec</a></li>
-                            <li><a href="https://support.atu.edu/support/solutions">Solutions</a></li>
-                            <li><a href="https://ams.atu.edu/">Manage Account</a></li>
-                        </ul>
-                    </div>
-                    <div class="item6">
-                        <ul>
-                            <li><a href="http://office365.atu.edu/">Office 365</a></li>
-                            <li><a href="https://onetech.atu.edu/">OneTech</a></li>
-                            <li><a href="https://ois.atu.edu/computer-based-training/">Online Training</a></li>
-                            <li><a href="https://ois.atu.edu/information-security/phishing/">Phishing</a></li>
-                        </ul>
-                    </div>
-                    <div class="item7">
-                        <ul>
-                            <li><a href="https://support.atu.edu/support/solutions/folders/7000071466">Policies</a></li>
-                            <li><a href="https://ois.atu.edu/hardwaresoftware-purchasing-best-practices/">Purchasing</a></li>
-                            <li><a href="https://ois.atu.edu/category/security/data-security-awareness/">Security Awarness</a></li>
-                            <li><a href="https://support.atu.edu/support/catalog/items/69">Software Request</a></li>
-                            <li><a href="https://get.teamviewer.com/v13/zzac6tp">TeamViewer</a></li>
-                        </ul>
-                    </div>
+                <div class="item2">
+                    <h3>QUICK LINKS</h3>
+                </div>
+                <div class="item4">
+                    <ul>
+                        <li><a href="https://bblearn.atu.edu/">Blackboard Learn</a></li>
+                        <li><a href="http://www.dell.com/dellu/atu">Dell Discounts</a></li>
+                        <li><a href="https://www.atu.edu/adminservices/form-tech-equip-removal.php">Equipment Removal</a></li>
+                        <li><a href="https://ois.atu.edu/feedback/">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="item5">
+                    <ul>
+                        <li><a href="https://ois.atu.edu/information-security/">InfoSec</a></li>
+                        <li><a href="https://support.atu.edu/support/solutions">Solutions</a></li>
+                        <li><a href="https://ams.atu.edu/">Manage Account</a></li>
+                    </ul>
+                </div>
+                <div class="item6">
+                    <ul>
+                        <li><a href="http://office365.atu.edu/">Office 365</a></li>
+                        <li><a href="https://onetech.atu.edu/">OneTech</a></li>
+                        <li><a href="https://ois.atu.edu/computer-based-training/">Online Training</a></li>
+                        <li><a href="https://ois.atu.edu/information-security/phishing/">Phishing</a></li>
+                    </ul>
+                </div>
+                <div class="item7">
+                    <ul>
+                        <li><a href="https://support.atu.edu/support/solutions/folders/7000071466">Policies</a></li>
+                        <li><a href="https://ois.atu.edu/hardwaresoftware-purchasing-best-practices/">Purchasing</a></li>
+                        <li><a href="https://ois.atu.edu/category/security/data-security-awareness/">Security Awarness</a></li>
+                        <li><a href="https://support.atu.edu/support/catalog/items/69">Software Request</a></li>
+                        <li><a href="https://get.teamviewer.com/v13/zzac6tp">TeamViewer</a></li>
+                    </ul>
+                </div>
         
                     <div class="item8">
                         <a href="https://www.atu.edu/"><img src="media/ATU_logo.PNG" width="80" height="40" alt="ATU Logo"></a><br><br>
                         <a>&copy; Copyright 2021 Arkansas Tech University - All Rights Reserved - Website Accessibility</a>
                     </div>
                 </div>
-            </footer>
-        </div>
-    </body>
-</html>
+                </footer>
+            </div>
+        </body>
+    </html>
